@@ -13,40 +13,46 @@ import br.edu.ifba.avaliacao.universidades.operacoes.Operacoes;
 import br.edu.ifba.avaliacao.universidades.sensoriamento.Sensoriamento;
 
 public class App {
-    private static final int TOTAL_UNIVERSIDADES = 10;
+    private static final int TOTAL_UNIVERSIDADES = 20;
     private static final int TOTAL_ACESSO = 10;
 
     public static void main(String[] args) throws Exception {
         Sensoriamento<Acessos> sensoriamento = new SensoriamentoImpl();
 
-        //gerando leitura de 10 universiades
+        // gerando leitura de 10 universiades
         Map<Universidade, List<Acessos>> quantidadeAcessos = new TreeMap<>();
-        for (int i = 0; i < TOTAL_UNIVERSIDADES; i++){
+        for (int i = 0; i < TOTAL_UNIVERSIDADES; i++) {
             quantidadeAcessos.put(new Universidade(i + "", "UESB #" + i), sensoriamento.gerar(TOTAL_ACESSO));
         }
 
         Operacoes<Universidade, Acessos> operacoes = new OperacoesImpl();
 
-        //IMPRIMINDO LISTA DE UNIVERSIDADES
-        //D.1
+        // IMPRIMINDO LISTA DE UNIVERSIDADES
+        // D.1
         System.out.println("**************************************************");
-        System.out.println("UNIVERSIDADES QUE UTILIZAM O SISTEMA");
+        System.out.println("UNIVERSIDADES QUE UTILIZAM O SISTEMA\n");
         operacoes.imprimir(new ArrayList<Universidade>(quantidadeAcessos.keySet()));
         System.out.println("\n**************************************************");
-        //IMPRIMINDO QUANTIDADE DE ACESSO POR UNIVERSIDADE
-        //D.2
-        
-        System.out.println("\nQUANTIDADE DE ACESSO DE CADA UNIVERSIDADE");
+        // IMPRIMINDO QUANTIDADE DE ACESSO POR UNIVERSIDADE
+        // D.2
+
+        System.out.println("\nQUANTIDADE DE ACESSO DE CADA UNIVERSIDADE\n");
         operacoes.imprimir(quantidadeAcessos);
         System.out.println("\n**************************************************");
 
-        //ORDENANDO OS DADOS DOS ACESSOS
-        //D.3
-        System.out.println("\nORDENANDO OS ACESSOS DAS UNIVERSIDADES");
+        // ORDENANDO OS DADOS DOS ACESSOS
+        // D.3
+        System.out.println("\nORDENANDO OS ACESSOS DAS UNIVERSIDADES\n");
         Map<Universidade, List<Acessos>> quantidadeAcessosOrdenados = operacoes.ordenar(quantidadeAcessos);
         operacoes.imprimir(quantidadeAcessosOrdenados);
         System.out.println("\n**************************************************");
-        
 
+        // ENCONTRA O DIA MAIS ACESSADO POR SEMANA
+        //D.4
+        System.out.println("\nENCONTRANDO O DIA MAIS ACESSADO POR SEMANA\n");
+        Map<Integer, Acessos> diaMaisAcessadoPorSemana = operacoes.encontrarDiaMaisAcessadoPorSemana(quantidadeAcessos);
+        for (Map.Entry<Integer, Acessos> entry : diaMaisAcessadoPorSemana.entrySet()) {
+            System.out.println("Semana " + entry.getKey() + ": " + entry.getValue());
+        }
     }
 }
