@@ -13,13 +13,13 @@ import br.edu.ifba.avaliacao.universidades.operacoes.Operacoes;
 import br.edu.ifba.avaliacao.universidades.sensoriamento.Sensoriamento;
 
 public class App {
-    private static final int TOTAL_UNIVERSIDADES = 20;
+    private static final int TOTAL_UNIVERSIDADES = 10;
     private static final int TOTAL_ACESSO = 10;
 
     public static void main(String[] args) throws Exception {
         Sensoriamento<Acessos> sensoriamento = new SensoriamentoImpl();
 
-        // gerando leitura de 10 universiades
+        // GERA LEITURA DE 10 UNIVERSIDADES
         Map<Universidade, List<Acessos>> quantidadeAcessos = new TreeMap<>();
         for (int i = 0; i < TOTAL_UNIVERSIDADES; i++) {
             quantidadeAcessos.put(new Universidade(i + "", "UESB #" + i), sensoriamento.gerar(TOTAL_ACESSO));
@@ -33,9 +33,9 @@ public class App {
         System.out.println("UNIVERSIDADES QUE UTILIZAM O SISTEMA\n");
         operacoes.imprimir(new ArrayList<Universidade>(quantidadeAcessos.keySet()));
         System.out.println("\n**************************************************");
-        // IMPRIMINDO QUANTIDADE DE ACESSO POR UNIVERSIDADE
-        // D.2
 
+        // IMPRIMINDO QUANTIDADE DE ACESSOS POR UNIVERSIDADE
+        // D.2
         System.out.println("\nQUANTIDADE DE ACESSO DE CADA UNIVERSIDADE\n");
         operacoes.imprimir(quantidadeAcessos);
         System.out.println("\n**************************************************");
@@ -47,7 +47,7 @@ public class App {
         operacoes.imprimir(quantidadeAcessosOrdenados);
         System.out.println("\n**************************************************");
 
-        // ENCONTRA O DIA MAIS ACESSADO POR SEMANA
+        // ENCONTRA O DIA MAIS ACESSADO POR SEMANA EM 1 ANO
         //D.4
         System.out.println("\nENCONTRANDO O DIA MAIS ACESSADO POR SEMANA\n");
         Map<Integer, Acessos> diaMaisAcessadoPorSemana = operacoes.encontrarDiaMaisAcessadoPorSemana(quantidadeAcessos);

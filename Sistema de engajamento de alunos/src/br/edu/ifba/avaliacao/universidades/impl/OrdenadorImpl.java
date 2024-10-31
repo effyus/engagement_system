@@ -33,7 +33,6 @@ public class OrdenadorImpl extends Ordenador<Acessos>{
         }
     }
 
-    
     /**
      * complexidade linear, O(N)
      * 

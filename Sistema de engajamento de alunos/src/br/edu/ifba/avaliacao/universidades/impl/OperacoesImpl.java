@@ -10,7 +10,7 @@ import br.edu.ifba.avaliacao.universidades.ordenador.Ordenador;
 
 public class OperacoesImpl implements Operacoes<Universidade, Acessos>{
     
-/*imprime o paciente - complexidade O(N) */
+/* COMPLEXIDADE LINEAR O(N) */
 @Override
 public void imprimir(List<Universidade>coletados){
     for (Universidade universidade: coletados){
@@ -27,7 +27,7 @@ public void imprimir(Map<Universidade, List<Acessos>> quantidadeAcessos){
         }
     }
 }
-/* COMPLEXIDADE O(N2^N) */
+/* COMPLEXIDADE QUASE EXPONENCIAL O(N2^N) */
 
 @Override
 public Map<Universidade, List<Acessos>> ordenar(Map<Universidade, List<Acessos>>quantidadeAcessos){
@@ -45,13 +45,8 @@ public Map<Universidade, List<Acessos>> ordenar(Map<Universidade, List<Acessos>>
 
     return quantidadeAcessosOrdenados;
 }
-/**
-     * complexidade cubica, O(N^3)
-     * 
-     * tem a possibilidade de gerar uma situacao de brute force, porque exige
-     * avaliar uma sequencia de dados biometricos de todos os pacientes monitorados. Dependendo da quantidade de pacientes e leituras realizadas, a execucao deste algoritmo pode elevar o seu tempo/custo e torna-lo ineficiente e ineficaz.
-     */
-    //FALTA ESSA PARTE
+/* COMPLEXIDADE CÚBICA O(N^3) */
+    
     public Map<Integer, Acessos> encontrarDiaMaisAcessadoPorSemana(Map<Universidade, List<Acessos>> quantidadeAcessos) {
         Map<Integer, Acessos> diaMaisAcessadoPorSemana = new HashMap<>();
         Map<Integer, Integer> totalAcessosPorDia = new HashMap<>();
@@ -71,7 +66,7 @@ public Map<Universidade, List<Acessos>> ordenar(Map<Universidade, List<Acessos>>
         }
 
         // Verifica o dia com mais acessos para cada semana
-        for (int semana = 1; semana <= 52; semana++) { // Assume que há 52 semanas
+        for (int semana = 1; semana <= 8; semana++) { // Exemplo de 8 semanas, mas pode ser de ate 52 semanas
             int diaMaisAcessado = -1;
             int maxAcessos = -1;
 
